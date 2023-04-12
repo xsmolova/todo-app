@@ -1,21 +1,20 @@
 import { Outlet } from "react-router-dom";
 import * as React from "react";
 import Loader from "../../components/loader/Loader";
-import { useGetTodoListByIDQuery } from "../../redux/features/TodoListsStateSlice";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Topbar from "../../components/topbar/Topbar";
 
 const AppLayout = () => {
-  const { data, error, isLoading } = useGetTodoListByIDQuery(1);
-  console.log(data);
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div>
-          <div>sidebar</div>
+      <div className="flex">
+        <Topbar />
+        <Sidebar />
+        <div className="w-screen h-screen p-14 pt-36">
+          Page
           <Outlet />
         </div>
-      )}
+      </div>
     </>
   );
 };

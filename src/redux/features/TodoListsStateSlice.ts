@@ -16,12 +16,12 @@ export interface TodoList {
     todos: Array<Todo>
 }
 
-export interface TodoListsState {
-    TodoListsState: Array<TodoList>;
+export interface TodoListsArray {
+    todoLists?: Array<TodoList>;
   };
   
-  const initialState: TodoListsState = {
-    TodoListsState: []
+  const initialState: TodoListsArray = {
+    todoLists: []
   };
   
   export const todoListsStateSlice = createSlice({
@@ -29,7 +29,7 @@ export interface TodoListsState {
     initialState,
     reducers: {
       setTodoLists: (state, action: PayloadAction<Array<TodoList>>) => {
-        state.TodoListsState = action.payload;
+        state.todoLists = action.payload;
       }
     }
   });
@@ -38,14 +38,14 @@ export interface TodoListsState {
     reducerPath:'todoListsApi',
     baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
     endpoints: (builder) => ({
-      getTodoListByID: builder.query<TodoList, number>({
-        query: (id) => `todo-lists`,
+      getTodoLists: builder.query<Array<TodoList>, {}>({
+        query: () => `todo-lists`,
       }),
     }),
   })
 
 
-  export const { useGetTodoListByIDQuery } = todoListsApi;
+  export const { useGetTodoListsQuery } = todoListsApi;
 
   export const {
     setTodoLists
