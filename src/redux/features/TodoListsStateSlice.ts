@@ -13,7 +13,7 @@ export interface Todo {
 export interface TodoList {
     id: number
     title: string
-    todos: Array<Todo>
+    todos?: Array<Todo>
 }
 
 export interface TodoListsArray {
@@ -38,8 +38,8 @@ export interface TodoListsArray {
     reducerPath:'todoListsApi',
     baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
     endpoints: (builder) => ({
-      getTodoLists: builder.query<Array<TodoList>, {}>({
-        query: () => `todo-lists`,
+      getTodoLists: builder.query({
+        query: () => '/todo-lists',
       }),
     }),
   })

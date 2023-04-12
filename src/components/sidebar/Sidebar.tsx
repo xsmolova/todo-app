@@ -21,7 +21,7 @@ const Sidebar = () => {
           </button>
           <SearchInput />
 
-          <h2 className="mt-10 ml-4">{localizedText.projects}</h2>
+          <h3 className="mt-10 ml-4">{localizedText.projects}</h3>
         </>
       )}
       <div className="divider"></div>

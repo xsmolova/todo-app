@@ -6,10 +6,11 @@
     @apply font-bold;
   }
   h2 {
-    @apply text-xl;
+    @apply text-3xl;
+    @apply font-bold;
   }
   h3 {
-    @apply text-lg;
+    @apply text-xl;
   }
   a {
     @apply text-blue-600 underline;

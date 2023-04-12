@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import * as React from "react";
-import Loader from "../../components/loader/Loader";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 
@@ -11,7 +10,6 @@ const AppLayout = () => {
         <Topbar />
         <Sidebar />
         <div className="w-screen h-screen p-14 pt-36">
-          Page
           <Outlet />
         </div>
       </div>
