@@ -3,7 +3,7 @@ import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAddNewTodoToTodoListMutation } from "../../redux/api/apiSlice";
+import { useAddNewTodoMutation } from "../../redux/api/apiSlice";
 import CustomButton from "../../components/customButton/CustomButton";
 import { localizedText } from "../../localization/strings";
 
@@ -13,7 +13,7 @@ const NewTodoModal = () => {
   );
   const id = activeTodoList.id;
   const [modalOpen, toggleModalOpen] = useState(false);
-  const [addNewTodo, result] = useAddNewTodoToTodoListMutation();
+  const [addNewTodo, result] = useAddNewTodoMutation();
 
   const {
     register,

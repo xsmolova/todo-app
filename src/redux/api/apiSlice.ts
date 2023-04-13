@@ -13,7 +13,7 @@ export const apiSlice= createApi({
         query: () => '/todo-lists',
         providesTags: ['TodoList'],
       }),
-      getTodoFromTodoList: builder.query({
+      getTodos: builder.query({
         query: (id) => `/todo-lists/${id}/todos`,
         providesTags: ['Todos'],
       }),
@@ -28,21 +28,41 @@ export const apiSlice= createApi({
         }),
         invalidatesTags: ['TodoList'],
       }),
-      addNewTodoToTodoList: builder.mutation({
-        query: (arg) => {
-            console.log(arg);
-           return  {
+      addNewTodo: builder.mutation({
+        query: (arg) => ({
           url: `/todo-lists/${arg.id}/todos`,
           method: 'POST',
           body: arg.data,
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           },
-        }},
-        invalidatesTags: ['TodoList','Todos'],
+        }),
+        invalidatesTags: ['Todos','TodoList'],
+      }),
+      editTodo: builder.mutation({
+        query: (arg) => ({
+          url: `/todo-lists/${arg.id}/todos/${arg.todoId}`,
+          method: 'PUT',
+          body: arg.data,
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }),
+        invalidatesTags: ['Todos','TodoList'],
+      }),
+      removeTodo: builder.mutation({
+        query: (arg) => ({
+          url: `/todo-lists/${arg.id}/todos/${arg.todoId}`,
+          method: 'DELETE',
+          body: arg.data,
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }),
+        invalidatesTags: ['Todos','TodoList'],
       }),
     }),
   })
 
 
-  export const { useGetTodoListsQuery, useGetTodoFromTodoListQuery, useAddNewTodoListMutation, useAddNewTodoToTodoListMutation } = apiSlice;
+  export const { useGetTodoListsQuery, useGetTodosQuery, useEditTodoMutation, useRemoveTodoMutation, useAddNewTodoListMutation, useAddNewTodoMutation } = apiSlice;
