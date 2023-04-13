@@ -2,6 +2,7 @@ import React from "react";
 import type { RootState } from "../../redux/store";
 import { Todo } from "../../redux/features/ActiveTodoListStateSlice";
 import { useSelector } from "react-redux";
+import { useGetTodoFromTodoListQuery } from "../../redux/api/apiSlice";
 import TodoCardGrid from "../../components/todoCardGrid/TodoCardGrid";
 import NewTodoModal from "../../components/newTodoCard/NewTodoModal";
 import { localizedText } from "../../localization/strings";
@@ -11,10 +12,14 @@ const TodoListPage = () => {
   const activeTodoList = useSelector(
     (state: RootState) => state.activeTodoList
   );
+  const id = activeTodoList.id;
+  console.log(id);
+  const { data, error, isLoading } = useGetTodoFromTodoListQuery(id);
+
   const doneTodos: Todo[] = [];
   const undoneTodos: Todo[] = [];
 
-  activeTodoList.todos?.forEach((todo: Todo) =>
+  data?.forEach((todo: Todo) =>
     todo.done ? doneTodos.push(todo) : undoneTodos.push(todo)
   );
 

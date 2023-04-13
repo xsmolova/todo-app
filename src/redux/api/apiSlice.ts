@@ -1,16 +1,21 @@
 // All endpoints here
 
 import { createApi, fetchBaseQuery  } from '@reduxjs/toolkit/query/react'
+import { Todo } from '../features/ActiveTodoListStateSlice';
 import { API_URL } from "../../configs/mainConfig";
 
 export const apiSlice= createApi({
     reducerPath:'api',
     baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
-    tagTypes: ['TodoList'],
+    tagTypes: ['TodoList','Todos'],
     endpoints: (builder) => ({
       getTodoLists: builder.query({
         query: () => '/todo-lists',
         providesTags: ['TodoList'],
+      }),
+      getTodoFromTodoList: builder.query({
+        query: (id) => `/todo-lists/${id}/todos`,
+        providesTags: ['Todos'],
       }),
       addNewTodoList: builder.mutation({
         query: payload => ({
@@ -24,18 +29,20 @@ export const apiSlice= createApi({
         invalidatesTags: ['TodoList'],
       }),
       addNewTodoToTodoList: builder.mutation({
-        query: (arg) => ({
+        query: (arg) => {
+            console.log(arg);
+           return  {
           url: `/todo-lists/${arg.id}/todos`,
           method: 'POST',
           body: arg.data,
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           },
-        }),
-        invalidatesTags: ['TodoList'],
+        }},
+        invalidatesTags: ['TodoList','Todos'],
       }),
     }),
   })
 
 
-  export const { useGetTodoListsQuery, useAddNewTodoListMutation, useAddNewTodoToTodoListMutation } = apiSlice;
+  export const { useGetTodoListsQuery, useGetTodoFromTodoListQuery, useAddNewTodoListMutation, useAddNewTodoToTodoListMutation } = apiSlice;

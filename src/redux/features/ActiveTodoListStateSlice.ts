@@ -25,19 +25,19 @@ export interface TodoListsArray {
 
   const initialState = {
     id:-1,
-    title: '',
-    todos: []
-  } as TodoList;
+    title:""
+  };
   
   export const activeTodoListStateSlice = createSlice({
     name: "activeTodoList",
     initialState,
     reducers: {
       setActiveTodoList: (state, action: PayloadAction<TodoList>) => {
-        return action.payload;
+        state.id = action.payload.id;
+        state.title = action.payload.title;
       },
       removeActiveTodoList: (state) => {
-        return initialState;
+        state = initialState;
       },
 
     }
