@@ -26,7 +26,7 @@ const NewTodoListPage = () => {
           addNewTodoList(data)
             .unwrap()
             .then(() => {})
-            .then((error) => {
+            .catch((error) => {
               console.log(error);
             });
         })}

@@ -23,8 +23,19 @@ export const apiSlice= createApi({
         }),
         invalidatesTags: ['TodoList'],
       }),
+      addNewTodoToTodoList: builder.mutation({
+        query: (arg) => ({
+          url: `/todo-lists/${arg.id}/todos`,
+          method: 'POST',
+          body: arg.data,
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }),
+        invalidatesTags: ['TodoList'],
+      }),
     }),
   })
 
 
-  export const { useGetTodoListsQuery, useAddNewTodoListMutation } = apiSlice;
+  export const { useGetTodoListsQuery, useAddNewTodoListMutation, useAddNewTodoToTodoListMutation } = apiSlice;

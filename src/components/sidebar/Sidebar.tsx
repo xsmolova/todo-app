@@ -12,10 +12,8 @@ import Loader from "../loader/Loader";
 
 const Sidebar = () => {
   const { data, error, isLoading } = useGetTodoListsQuery({});
-
   const dispatch = useDispatch();
 
-  console.log(data);
   return (
     <div className="bg-accent h-screen p-4 pl-5 pr-5 w-96 max-w-96 overflow-hidden">
       <Link

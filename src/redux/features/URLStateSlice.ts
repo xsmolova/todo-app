@@ -1,12 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface URLState {
-  url: string;
-};
 
-const initialState: URLState = {
-  url: "/"
-};
+const initialState = {
+  url: ""
+} 
 
 export const URLStateSlice = createSlice({
   name: "url",

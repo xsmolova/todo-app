@@ -34,8 +34,6 @@ export interface TodoListsArray {
     initialState,
     reducers: {
       setActiveTodoList: (state, action: PayloadAction<TodoList>) => {
-        console.log(action.payload)
-        console.log(state.id)
         return action.payload;
       },
       removeActiveTodoList: (state) => {

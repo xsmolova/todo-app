@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
 import { Link } from "react-router-dom";
 import { TodoListsArray } from "../../redux/features/ActiveTodoListStateSlice";
@@ -19,7 +19,7 @@ const SidebarTodoList = ({ todoLists }: TodoListsArray) => {
             <div className="w-4/5 text-ellipsis text-left overflow-hidden">
               {todoList.title}
             </div>
-            <div className="badge badge-primary text- font-semibold text-white absolute right-3">
+            <div className="badge badge-primary font-semibold text-white absolute right-3">
               {todoList.todos?.length}
             </div>
           </Link>

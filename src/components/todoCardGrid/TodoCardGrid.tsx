@@ -1,10 +1,14 @@
 import * as React from "react";
-import { TodoArray } from "../../redux/features/ActiveTodoListStateSlice";
+import { Todo } from "../../redux/features/ActiveTodoListStateSlice";
 import TodoCard from "../todoCard/TodoCard";
-import NewTodoCard from "../newTodoCard/NewTodoCard";
 import { localizedText } from "../../localization/strings";
 
-const TodoCardGrid = (todos: TodoArray) => {
+interface Props {
+  doneTodos?: Todo[];
+  undoneTodos?: Todo[];
+}
+
+const TodoCardGrid = ({ doneTodos, undoneTodos }: Props) => {
   return (
     <div className="h-[calc(100%-4rem)] overflow-hidden">
       <div className="mt-10 grid gap-5 grid-cols-2">
@@ -12,23 +16,17 @@ const TodoCardGrid = (todos: TodoArray) => {
         <div className="ml-3 mb-7">{localizedText.done}:</div>
       </div>
       <div className="grid gap-5 grid-cols-2 max-h-[calc(100%-100px)] overflow-auto">
-        {/* To - Do Cards */}
+        {/* Undone */}
         <div className="flex flex-col gap-5">
-          <TodoCard />
-          <TodoCard />
-          <TodoCard />
-          <TodoCard />
-          <NewTodoCard />
+          {undoneTodos?.map((todo) => (
+            <TodoCard key={`todo-${todo.id}`} todo={todo} />
+          ))}
         </div>
-        {/* Done Cards */}
+        {/* Done */}
         <div className="flex flex-col gap-5">
-          <TodoCard checked />
-          <TodoCard checked />
-          <TodoCard checked />
-          <TodoCard checked />
-          <TodoCard checked />
-          <TodoCard checked />
-          <TodoCard checked />
+          {doneTodos?.map((todo) => (
+            <TodoCard key={`todo-${todo.id}`} todo={todo} checked />
+          ))}
         </div>
       </div>
     </div>
