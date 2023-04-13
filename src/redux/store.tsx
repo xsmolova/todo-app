@@ -4,16 +4,16 @@ import urlReducer from "./features/URLStateSlice";
 import todoListsReducer from "./features/TodoListsStateSlice";
 
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { todoListsApi } from "./features/TodoListsStateSlice";
+import { apiSlice } from "./api/apiSlice";
 
 const store = configureStore({
   reducer: {
     url: urlReducer,
     todoLists: todoListsReducer,
-    [todoListsApi.reducerPath]: todoListsApi.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(todoListsApi.middleware),
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 setupListeners(store.dispatch);

@@ -7,7 +7,7 @@ const SearchInput = () => {
     <div className="flex relative mt-3 items-center">
       <input
         type="text"
-        placeholder="Search your Todos"
+        placeholder={localizedText.search}
         className="input w-full max-w-xs text-sm"
       />
       <BiSearchAlt className="absolute right-3 text-primary-focus" />

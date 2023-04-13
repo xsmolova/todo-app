@@ -9,7 +9,7 @@ const AppLayout = () => {
       <div className="flex">
         <Topbar />
         <Sidebar />
-        <div className="w-screen h-screen p-14 pt-36">
+        <div className="w-screen h-screen p-14 pt-36 overflow-hidden">
           <Outlet />
         </div>
       </div>

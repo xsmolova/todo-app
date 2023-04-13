@@ -42,3 +42,30 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: theme('colors.secondary-focus');
+  
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: theme('colors.primary');
+  
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.primary');
+  
+  border-radius: 10px;
+}

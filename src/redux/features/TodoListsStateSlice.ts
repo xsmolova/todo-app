@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { createApi, fetchBaseQuery  } from '@reduxjs/toolkit/query/react'
-import { API_URL } from "../../configs/mainConfig";
 
 export interface Todo {
     id: number
@@ -8,6 +6,7 @@ export interface Todo {
     description: string
     createdAt: Date 
     deadline: Date 
+    done: boolean
 }
 
 export interface TodoList {
@@ -19,36 +18,28 @@ export interface TodoList {
 export interface TodoListsArray {
     todoLists?: Array<TodoList>;
   };
+
+  type TodoListsState = {
+    activeTodoList: TodoList | null,
+  }
   
-  const initialState: TodoListsArray = {
-    todoLists: []
+  const initialState: TodoListsState = {
+    activeTodoList: null,
   };
   
   export const todoListsStateSlice = createSlice({
     name: "todoLists",
     initialState,
     reducers: {
-      setTodoLists: (state, action: PayloadAction<Array<TodoList>>) => {
-        state.todoLists = action.payload;
+      setActiveTodoList: (state, action: PayloadAction<TodoList>) => {
+        state.activeTodoList = action.payload;
       }
     }
   });
 
-  export const todoListsApi= createApi({
-    reducerPath:'todoListsApi',
-    baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
-    endpoints: (builder) => ({
-      getTodoLists: builder.query({
-        query: () => '/todo-lists',
-      }),
-    }),
-  })
-
-
-  export const { useGetTodoListsQuery } = todoListsApi;
-
+ 
   export const {
-    setTodoLists
+    setActiveTodoList
   } = todoListsStateSlice.actions;
   
   export default todoListsStateSlice.reducer;

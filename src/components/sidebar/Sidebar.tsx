@@ -1,24 +1,35 @@
 import * as React from "react";
+import { BiClipboard } from "react-icons/bi";
+import { Link } from "react-router-dom";
 import SearchInput from "../searchInput/SearchInput";
+import CustomButton from "../customButton/CustomButton";
 import SidebarTodoList from "../sidebarTodoList/SidebarTodoList";
 import { localizedText } from "../../localization/strings";
-import { useGetTodoListsQuery } from "../../redux/features/TodoListsStateSlice";
+import { useGetTodoListsQuery } from "../../redux/api/apiSlice";
 import Loader from "../loader/Loader";
 
 const Sidebar = () => {
-  const { data, error, isLoading } = useGetTodoListsQuery(1);
+  const { data, error, isLoading } = useGetTodoListsQuery({
+    refetchOnMountOrArgChange: true,
+  });
 
   console.log(data);
   return (
     <div className="bg-accent h-screen p-4 pl-5 pr-5 w-96 max-w-96 overflow-hidden">
-      <h1 className="ml-4">{localizedText.myTodos}</h1>
+      <Link
+        to="/"
+        className="text-black no-underline hover:text-primary-focus flex items-center"
+      >
+        <BiClipboard className="ml-4 text-3xl" />
+        <h1 className="ml-4">{localizedText.myTodos}</h1>
+      </Link>
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <button className="btn btn-block mt-6 bg-primary hover:bg-primary-focus border-none text-white normal-case justify-start ">
-            {`+ ${localizedText.buttons.addTodoList}`}
-          </button>
+          <Link to="/new-todo-list">
+            <CustomButton children={`+ ${localizedText.buttons.addTodoList}`} />
+          </Link>
           <SearchInput />
 
           <h3 className="mt-10 ml-4">{localizedText.projects}</h3>
