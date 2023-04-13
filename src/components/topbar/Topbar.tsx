@@ -1,7 +1,4 @@
 import * as React from "react";
-
-import photo from "../../assets/photo.jpg";
-
 import { localizedText } from "../../localization/strings";
 
 const Topbar = () => {

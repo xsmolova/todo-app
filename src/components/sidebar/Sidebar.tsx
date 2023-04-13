@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDispatch } from "react-redux";
 import { BiClipboard } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import SearchInput from "../searchInput/SearchInput";
@@ -6,18 +7,20 @@ import CustomButton from "../customButton/CustomButton";
 import SidebarTodoList from "../sidebarTodoList/SidebarTodoList";
 import { localizedText } from "../../localization/strings";
 import { useGetTodoListsQuery } from "../../redux/api/apiSlice";
+import { removeActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
 import Loader from "../loader/Loader";
 
 const Sidebar = () => {
-  const { data, error, isLoading } = useGetTodoListsQuery({
-    refetchOnMountOrArgChange: true,
-  });
+  const { data, error, isLoading } = useGetTodoListsQuery({});
+
+  const dispatch = useDispatch();
 
   console.log(data);
   return (
     <div className="bg-accent h-screen p-4 pl-5 pr-5 w-96 max-w-96 overflow-hidden">
       <Link
         to="/"
+        onClick={() => dispatch(removeActiveTodoList())}
         className="text-black no-underline hover:text-primary-focus flex items-center"
       >
         <BiClipboard className="ml-4 text-3xl" />

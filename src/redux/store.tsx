@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import urlReducer from "./features/URLStateSlice";
-import todoListsReducer from "./features/TodoListsStateSlice";
+import activeTodoListReducer from "./features/ActiveTodoListStateSlice";
 
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./api/apiSlice";
@@ -9,7 +9,7 @@ import { apiSlice } from "./api/apiSlice";
 const store = configureStore({
   reducer: {
     url: urlReducer,
-    todoLists: todoListsReducer,
+    activeTodoList: activeTodoListReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

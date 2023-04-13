@@ -1,8 +1,10 @@
 import * as React from "react";
-import TodoCard from "../todoCard/todoCard";
+import { TodoArray } from "../../redux/features/ActiveTodoListStateSlice";
+import TodoCard from "../todoCard/TodoCard";
+import NewTodoCard from "../newTodoCard/NewTodoCard";
 import { localizedText } from "../../localization/strings";
 
-const TodoCardGrid = () => {
+const TodoCardGrid = (todos: TodoArray) => {
   return (
     <div className="h-[calc(100%-4rem)] overflow-hidden">
       <div className="mt-10 grid gap-5 grid-cols-2">
@@ -15,9 +17,15 @@ const TodoCardGrid = () => {
           <TodoCard />
           <TodoCard />
           <TodoCard />
+          <TodoCard />
+          <NewTodoCard />
         </div>
         {/* Done Cards */}
         <div className="flex flex-col gap-5">
+          <TodoCard checked />
+          <TodoCard checked />
+          <TodoCard checked />
+          <TodoCard checked />
           <TodoCard checked />
           <TodoCard checked />
           <TodoCard checked />
