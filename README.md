@@ -7,7 +7,7 @@ Filtering by search - typing any text in search input will show you your filtere
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ---
-permalink: /index.html
+permalink: /public/index.html
 ---
 
 ## Available Scripts
