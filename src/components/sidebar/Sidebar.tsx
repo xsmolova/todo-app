@@ -19,7 +19,7 @@ import Loader from "../loader/Loader";
 //  - listed todo lists - scrollable
 
 const Sidebar = () => {
-  const { data, error, isLoading } = useGetTodoListsQuery({});
+  const { data, isLoading } = useGetTodoListsQuery({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery  } from '@reduxjs/toolkit/query/react'
-import { Todo, TodoList, TodoListsArray } from '../features/Interfaces';
 import { API_URL } from "../../configs/mainConfig";
-import { useDispatch } from 'react-redux';
 
 // All endpoints here
 export const apiSlice= createApi({

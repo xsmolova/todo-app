@@ -15,6 +15,7 @@ interface Props {
   edit?: boolean;
   todoId?: number;
   todoValues?: any;
+  activeTodoId?: number;
   closeEditingModal?: () => void;
 }
 
@@ -26,12 +27,18 @@ const DEFAULT_VALUES = {
 };
 
 // Modal for adding a new todo or editing existing ones
-const TodoModal = ({ edit, todoId, todoValues, closeEditingModal }: Props) => {
+const TodoModal = ({
+  edit,
+  todoId,
+  todoValues,
+  closeEditingModal,
+  activeTodoId,
+}: Props) => {
   const activeTodoList = useSelector(getActiveTodoList, shallowEqual);
-  const id = activeTodoList.id;
+  const id = activeTodoList.id !== -1 ? activeTodoList.id : activeTodoId;
   const [modalOpen, toggleModalOpen] = useState(edit ? true : false);
-  const [editTodo, resultEdit] = useEditTodoMutation();
-  const [addNewTodo, resultAddNew] = useAddNewTodoMutation();
+  const [editTodo] = useEditTodoMutation();
+  const [addNewTodo] = useAddNewTodoMutation();
 
   const {
     register,

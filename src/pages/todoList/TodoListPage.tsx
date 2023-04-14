@@ -24,7 +24,7 @@ const TodoListPage = (props: any) => {
   const activeTodoList = useSelector(getActiveTodoList, shallowEqual);
 
   const id = activeTodoList.id;
-  const { data, error, isLoading } = useGetTodosQuery(id);
+  const { data, isLoading } = useGetTodosQuery(id);
   let urlTodoListParam = useParams().id;
 
   const doneTodos: Todo[] = [];

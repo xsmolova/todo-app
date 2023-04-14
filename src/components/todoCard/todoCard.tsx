@@ -23,8 +23,8 @@ const TodoCard = ({ todo, activeTodoId }: Props) => {
   const [editing, toggleEditing] = useState(false);
   const activeTodoList = useSelector(getActiveTodoList, shallowEqual);
   const id = activeTodoList.id !== -1 ? activeTodoList.id : activeTodoId;
-  const [removeTodo, resultRemove] = useRemoveTodoMutation();
-  const [editTodo, resultEdit] = useEditTodoMutation();
+  const [removeTodo] = useRemoveTodoMutation();
+  const [editTodo] = useEditTodoMutation();
   const todoId = todo.id;
 
   const data = { ...todo };
@@ -44,6 +44,7 @@ const TodoCard = ({ todo, activeTodoId }: Props) => {
           edit={editing}
           todoId={todoId}
           todoValues={todoValues}
+          activeTodoId={id}
           closeEditingModal={() => toggleEditing(false)}
         />
       )}

@@ -6,7 +6,7 @@ import { localizedText } from "../../localization/strings";
 
 // create a new todo list
 const NewTodoListPage = () => {
-  const [addNewTodoList, result] = useAddNewTodoListMutation();
+  const [addNewTodoList] = useAddNewTodoListMutation();
 
   const {
     register,

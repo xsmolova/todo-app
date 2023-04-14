@@ -1,5 +1,4 @@
 import * as React from "react";
-import { localizedText } from "../../localization/strings";
 
 // Topbar with avatar without functionality
 const Topbar = () => {
