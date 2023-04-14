@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# To-Do React App
+
+This cute React todo app lets you create your todo lists and todos. All your todos are visible at homepage. You can then see all the tasks that belong to a todo list by clicking on todo list in sidebar. Here you can further edit/delete your todos or simply tag them as done or not done.
+
+Filtering by search - typing any text in search input will show you your filtered results on homepage.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
