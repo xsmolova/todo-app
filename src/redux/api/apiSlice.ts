@@ -54,7 +54,6 @@ export const apiSlice= createApi({
         query: (arg) => ({
           url: `/todo-lists/${arg.id}/todos/${arg.todoId}`,
           method: 'DELETE',
-          body: arg.data,
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           },

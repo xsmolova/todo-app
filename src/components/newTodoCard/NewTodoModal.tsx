@@ -1,4 +1,5 @@
 import * as React from "react";
+import { BiX } from "react-icons/bi";
 import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -6,6 +7,13 @@ import { useForm } from "react-hook-form";
 import { useAddNewTodoMutation } from "../../redux/api/apiSlice";
 import CustomButton from "../../components/customButton/CustomButton";
 import { localizedText } from "../../localization/strings";
+
+const defaultValues = {
+  title: "",
+  description: "",
+  deadline: "",
+  done: false,
+};
 
 const NewTodoModal = () => {
   const activeTodoList = useSelector(
@@ -17,16 +25,17 @@ const NewTodoModal = () => {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      title: "",
-      description: "",
-      deadline: "",
-      done: false,
-    },
+    defaultValues: defaultValues,
   });
+
+  const resetInputFieldsAndCloseModal = () => {
+    reset(defaultValues);
+    toggleModalOpen(false);
+  };
 
   return (
     <>
@@ -50,7 +59,7 @@ const NewTodoModal = () => {
               htmlFor="new-todo-modal"
               className="btn bg-primary hover:bg-primary-focus border-none text-white normal-case max-w-xs"
             >
-              X
+              <BiX className="text-lg" />
             </label>
           </div>
           <h3 className="font-bold text-lg">{localizedText.whatTodo}</h3>
@@ -59,7 +68,7 @@ const NewTodoModal = () => {
             className="flex mt-3 relative flex-col justify-center items-center"
             onSubmit={handleSubmit((data) => {
               addNewTodo({ id, data });
-              toggleModalOpen(false);
+              resetInputFieldsAndCloseModal();
             })}
           >
             <label className="text-sm  w-72 text-left">

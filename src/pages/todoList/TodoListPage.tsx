@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useGetTodosQuery } from "../../redux/api/apiSlice";
 import TodoCardGrid from "../../components/todoCardGrid/TodoCardGrid";
 import NewTodoModal from "../../components/newTodoCard/NewTodoModal";
+import Loader from "../../components/loader/Loader";
 import { localizedText } from "../../localization/strings";
 
 //todoList: TodoList
@@ -13,7 +14,6 @@ const TodoListPage = () => {
     (state: RootState) => state.activeTodoList
   );
   const id = activeTodoList.id;
-  console.log(id);
   const { data, error, isLoading } = useGetTodosQuery(id);
 
   const doneTodos: Todo[] = [];
@@ -26,14 +26,24 @@ const TodoListPage = () => {
   return (
     <div className="max-h-full h-full relative">
       <h2>{activeTodoList.title}</h2>
-      <div className="absolute top-0 right-0">
-        <NewTodoModal />
-      </div>
 
-      <div className="mt-3">
-        {localizedText.formatString(localizedText.xMoreOnTodoList, <b>3</b>)}
-      </div>
-      <TodoCardGrid doneTodos={doneTodos} undoneTodos={undoneTodos} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="absolute top-0 right-0">
+            <NewTodoModal />
+          </div>
+
+          <div className="mt-3">
+            {localizedText.formatString(
+              localizedText.xMoreOnTodoList,
+              <b>3</b>
+            )}
+          </div>
+          <TodoCardGrid doneTodos={doneTodos} undoneTodos={undoneTodos} />
+        </>
+      )}
     </div>
   );
 };
