@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
 import { Link } from "react-router-dom";
-import { TodoListsArray } from "../../redux/features/ActiveTodoListStateSlice";
+import { TodoListsArray } from "../../redux/features/Interfaces";
 
 const SidebarTodoList = ({ todoLists }: TodoListsArray) => {
   const dispatch = useDispatch();

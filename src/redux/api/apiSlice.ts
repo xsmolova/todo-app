@@ -1,7 +1,7 @@
 // All endpoints here
 
 import { createApi, fetchBaseQuery  } from '@reduxjs/toolkit/query/react'
-import { Todo } from '../features/ActiveTodoListStateSlice';
+import { Todo } from '../features/Interfaces';
 import { API_URL } from "../../configs/mainConfig";
 
 export const apiSlice= createApi({
@@ -14,7 +14,7 @@ export const apiSlice= createApi({
         providesTags: ['TodoList'],
       }),
       getTodos: builder.query({
-        query: (id) => `/todo-lists/${id}/todos`,
+        query: (id) => `/todo-lists/${id}/todos?sortBy=deadline`,
         providesTags: ['Todos'],
       }),
       addNewTodoList: builder.mutation({

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Todo } from "../../redux/features/ActiveTodoListStateSlice";
+import { Todo } from "../../redux/features/Interfaces";
 import TodoCard from "../todoCard/TodoCard";
 import { localizedText } from "../../localization/strings";
 

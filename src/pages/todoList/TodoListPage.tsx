@@ -1,20 +1,30 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import type { RootState } from "../../redux/store";
-import { Todo } from "../../redux/features/ActiveTodoListStateSlice";
+import { Todo, TodoList } from "../../redux/features/Interfaces";
+import { setActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
 import { useSelector } from "react-redux";
-import { useGetTodosQuery } from "../../redux/api/apiSlice";
+import {
+  useGetTodosQuery,
+  useGetTodoListsQuery,
+} from "../../redux/api/apiSlice";
 import TodoCardGrid from "../../components/todoCardGrid/TodoCardGrid";
 import TodoModal from "../../components/todoModal/TodoModal";
 import Loader from "../../components/loader/Loader";
 import { localizedText } from "../../localization/strings";
 
 //todoList: TodoList
-const TodoListPage = () => {
+const TodoListPage = (props: any) => {
+  const dispatch = useDispatch();
+  const { data: todoLists } = useGetTodoListsQuery({});
   const activeTodoList = useSelector(
     (state: RootState) => state.activeTodoList
   );
   const id = activeTodoList.id;
   const { data, error, isLoading } = useGetTodosQuery(id);
+  let urlTodoListParam = useParams().id;
 
   const doneTodos: Todo[] = [];
   const undoneTodos: Todo[] = [];
@@ -22,6 +32,16 @@ const TodoListPage = () => {
   data?.forEach((todo: Todo) =>
     todo.done ? doneTodos.push(todo) : undoneTodos.push(todo)
   );
+
+  // Active todo list wasn't set (when refreshing the page)
+  useEffect(() => {
+    if (id === -1 && todoLists) {
+      const activeTodoListIndex = todoLists.findIndex(
+        (todolist: TodoList) => todolist.id.toString() === urlTodoListParam
+      );
+      dispatch(setActiveTodoList(todoLists[activeTodoListIndex]));
+    }
+  });
 
   return (
     <div className="max-h-full h-full relative">

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { Todo } from "../../redux/features/ActiveTodoListStateSlice";
+import { Todo } from "../../redux/features/Interfaces";
 import { BiEditAlt, BiTrash } from "react-icons/bi";
 import { GetFormattedDateString } from "../../utils/dateUtils";
 import {
