@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import todosStateSlice from "./features/TodosStateSlice";
+import todosReducer from "./features/TodosStateSlice";
 import activeTodoListReducer from "./features/ActiveTodoListStateSlice";
+import filterReducer from "./features/FilterStateSlice";
 
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./api/apiSlice";
 
 const store = configureStore({
   reducer: {
-    todos: todosStateSlice,
+    todos: todosReducer,
+    filter: filterReducer,
     activeTodoList: activeTodoListReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },

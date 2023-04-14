@@ -5,6 +5,7 @@ export interface Todo {
     createdAt: Date 
     deadline: Date 
     done: boolean
+    todoListId? : number
 }
 
 export interface TodoList {
@@ -20,3 +21,7 @@ export interface TodoArray {
 export interface TodoListsArray {
     todoLists?: Array<TodoList>;
   };
+
+ export interface Filter{
+    search: string
+  }

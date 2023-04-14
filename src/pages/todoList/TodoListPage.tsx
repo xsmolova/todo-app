@@ -40,7 +40,6 @@ const TodoListPage = (props: any) => {
       const activeTodoListIndex = todoLists.findIndex(
         (todolist: TodoList) => todolist.id.toString() === urlTodoListParam
       );
-      console.log(activeTodoListIndex);
       if (activeTodoListIndex !== -1)
         dispatch(setActiveTodoList(todoLists[activeTodoListIndex]));
       else navigate("/404");

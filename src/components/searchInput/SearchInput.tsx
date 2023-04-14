@@ -13,7 +13,7 @@ const SearchInput = ({ setValue }: Props) => {
   const handleKeyDown = (event: any) => {
     if (event.key === "Enter") {
       setValue(searchValue);
-      setSearchValue("");
+      //setSearchValue("");
     }
   };
 

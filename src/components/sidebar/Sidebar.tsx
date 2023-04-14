@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { BiClipboard } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -9,12 +9,14 @@ import SidebarTodoList from "../sidebarTodoList/SidebarTodoList";
 import { localizedText } from "../../localization/strings";
 import { useGetTodoListsQuery } from "../../redux/api/apiSlice";
 import { removeActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
+import { setSearchInput } from "../../redux/features/FilterStateSlice";
+
 import Loader from "../loader/Loader";
 
 const Sidebar = () => {
-  const [searchInput, setSearchInput] = useState("");
   const { data, error, isLoading } = useGetTodoListsQuery({});
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="bg-accent h-screen p-4 pl-5 pr-5 w-96 max-w-96 overflow-hidden">
@@ -33,7 +35,12 @@ const Sidebar = () => {
           <Link to="/new-todo-list">
             <CustomButton children={`+ ${localizedText.buttons.addTodoList}`} />
           </Link>
-          <SearchInput setValue={(value: string) => setSearchInput(value)} />
+          <SearchInput
+            setValue={(value: string) => {
+              dispatch(setSearchInput({ search: value }));
+              navigate("/");
+            }}
+          />
 
           <h3 className="mt-10 ml-4">{localizedText.projects}</h3>
         </>

@@ -19,14 +19,16 @@ export let localizedText = new LocalizedStrings({
     maxLength:"Maximal length reached!",
     addDescription:"Add description",
     required:"This field is required!",
-    search:"Search your Todos",
-    deleteMessage: "Do you really want to delete this todo?",
+    search:"Search your to-dos",
+    seeAllTodos:"Here you can see all of your to-dos!",
+    searchResult: "Search results for {0}",
+    deleteMessage: "Do you really want to delete this to-do?",
    
     buttons: {
-      addTodoList: "Add New Todo List",
-      createTodoList: "Create Todo List",
-      newTodo: "New Todo",
-      editTodo: "Edit Todo"
+      addTodoList: "Add New To-do List",
+      createTodoList: "Create To-do List",
+      newTodo: "New To-do",
+      editTodo: "Edit To-do"
     },
   },
 });

@@ -4,7 +4,7 @@ import { Todo,TodoList } from "./Interfaces";
 import { RootState } from "../store";
 
 const initialState = {
-  } as any[];
+  } as Todo[];
   
 export const todosStateSlice = createSlice({
     name: "todos",

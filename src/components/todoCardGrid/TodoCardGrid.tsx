@@ -18,14 +18,24 @@ const TodoCardGrid = ({ doneTodos, undoneTodos }: Props) => {
       <div className="grid gap-5 grid-cols-2 max-h-[calc(100%-100px)] overflow-auto">
         {/* Undone */}
         <div className="flex flex-col gap-5">
-          {undoneTodos?.map((todo) => (
-            <TodoCard key={`todo-${todo.id}`} todo={todo} />
-          ))}
+          {undoneTodos?.map((todo) => {
+            return (
+              <TodoCard
+                key={`todo-${todo.id}`}
+                todo={todo}
+                activeTodoId={todo.todoListId}
+              />
+            );
+          })}
         </div>
         {/* Done */}
         <div className="flex flex-col gap-5">
           {doneTodos?.map((todo) => (
-            <TodoCard key={`todo-${todo.id}`} todo={todo} checked />
+            <TodoCard
+              key={`todo-${todo.id}`}
+              todo={todo}
+              activeTodoId={todo.todoListId}
+            />
           ))}
         </div>
       </div>

@@ -13,16 +13,16 @@ import { localizedText } from "../../localization/strings";
 import TodoModal from "../todoModal/TodoModal";
 
 interface Props {
-  checked?: boolean;
   todo: Todo;
+  activeTodoId?: number;
 }
 
-const TodoCard = ({ checked, todo }: Props) => {
+const TodoCard = ({ todo, activeTodoId }: Props) => {
   const [editing, toggleEditing] = useState(false);
   const activeTodoList = useSelector(
     (state: RootState) => state.activeTodoList
   );
-  const id = activeTodoList.id;
+  const id = activeTodoList.id !== -1 ? activeTodoList.id : activeTodoId;
   const [removeTodo, resultRemove] = useRemoveTodoMutation();
   const [editTodo, resultEdit] = useEditTodoMutation();
   const todoId = todo.id;
