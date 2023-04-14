@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { BiClipboard } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -11,6 +12,7 @@ import { removeActiveTodoList } from "../../redux/features/ActiveTodoListStateSl
 import Loader from "../loader/Loader";
 
 const Sidebar = () => {
+  const [searchInput, setSearchInput] = useState("");
   const { data, error, isLoading } = useGetTodoListsQuery({});
   const dispatch = useDispatch();
 
@@ -31,7 +33,7 @@ const Sidebar = () => {
           <Link to="/new-todo-list">
             <CustomButton children={`+ ${localizedText.buttons.addTodoList}`} />
           </Link>
-          <SearchInput />
+          <SearchInput setValue={(value: string) => setSearchInput(value)} />
 
           <h3 className="mt-10 ml-4">{localizedText.projects}</h3>
         </>

@@ -1,27 +1,29 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Todo } from "./Interfaces";
+import { createSlice } from "@reduxjs/toolkit";
+import { apiSlice } from "../api/apiSlice";
+import { Todo,TodoList } from "./Interfaces";
+import { RootState } from "../store";
 
 const initialState = {
-  } as Todo[];
+  } as any[];
   
 export const todosStateSlice = createSlice({
     name: "todos",
     initialState,
-    reducers: {
-      setTodos: (state, action: PayloadAction<Todo[]>) => {
-        state = action.payload;
-      },
-      removeTodos: (state) => {
-        state = initialState;
-      },
+    reducers: {},
+  extraReducers: (builder) => {
+    builder.addMatcher(
+        apiSlice.endpoints.getTodoLists.matchFulfilled,
+      (state, { payload }) => {
 
-    }
+        let allTodos:any[] = [];
+        payload.forEach((todoList: TodoList) => {
+          allTodos = allTodos.concat(todoList.todos)
+        })
+        return allTodos;
+      }
+    )
+  },
   });
 
- 
-  export const {
-    setTodos,
-    removeTodos
-  } = todosStateSlice.actions;
-  
+  export const getAllTodos = (state: RootState) => state.todos;
   export default todosStateSlice.reducer;

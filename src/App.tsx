@@ -22,6 +22,7 @@ const router = createBrowserRouter([
       {
         path: "todo-list/:id",
         element: <TodoListPage />,
+        errorElement: <ErrorPage />,
       },
     ],
   },

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import type { RootState } from "../../redux/store";
 import { Todo, TodoList } from "../../redux/features/Interfaces";
 import { setActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
@@ -18,6 +18,7 @@ import { localizedText } from "../../localization/strings";
 //todoList: TodoList
 const TodoListPage = (props: any) => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
   const { data: todoLists } = useGetTodoListsQuery({});
   const activeTodoList = useSelector(
     (state: RootState) => state.activeTodoList
@@ -39,7 +40,10 @@ const TodoListPage = (props: any) => {
       const activeTodoListIndex = todoLists.findIndex(
         (todolist: TodoList) => todolist.id.toString() === urlTodoListParam
       );
-      dispatch(setActiveTodoList(todoLists[activeTodoListIndex]));
+      console.log(activeTodoListIndex);
+      if (activeTodoListIndex !== -1)
+        dispatch(setActiveTodoList(todoLists[activeTodoListIndex]));
+      else navigate("/404");
     }
   });
 
