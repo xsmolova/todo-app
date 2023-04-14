@@ -3,6 +3,7 @@ import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 
 type Props = {};
 
+// Error page - routing
 const ErrorPage = (props: Props) => {
   const error = useRouteError();
   console.error(error);

@@ -8,6 +8,7 @@ interface Props {
   undoneTodos?: Todo[];
 }
 
+// Grid with todos, separated into to-do and done sections
 const TodoCardGrid = ({ doneTodos, undoneTodos }: Props) => {
   return (
     <div className="h-[calc(100%-4rem)] overflow-hidden">

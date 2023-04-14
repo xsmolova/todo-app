@@ -1,11 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import type { RootState } from "../../redux/store";
 import { Todo, TodoList } from "../../redux/features/Interfaces";
-import { setActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
-import { useSelector } from "react-redux";
+import {
+  setActiveTodoList,
+  getActiveTodoList,
+} from "../../redux/features/ActiveTodoListStateSlice";
 import {
   useGetTodosQuery,
   useGetTodoListsQuery,
@@ -15,14 +16,13 @@ import TodoModal from "../../components/todoModal/TodoModal";
 import Loader from "../../components/loader/Loader";
 import { localizedText } from "../../localization/strings";
 
-//todoList: TodoList
+// Shows todos for active todo list
 const TodoListPage = (props: any) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { data: todoLists } = useGetTodoListsQuery({});
-  const activeTodoList = useSelector(
-    (state: RootState) => state.activeTodoList
-  );
+  const activeTodoList = useSelector(getActiveTodoList, shallowEqual);
+
   const id = activeTodoList.id;
   const { data, error, isLoading } = useGetTodosQuery(id);
   let urlTodoListParam = useParams().id;

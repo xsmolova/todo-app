@@ -4,6 +4,7 @@ import { setActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice
 import { Link } from "react-router-dom";
 import { TodoListsArray } from "../../redux/features/Interfaces";
 
+// Sidebar todo lists with number of todos
 const SidebarTodoList = ({ todoLists }: TodoListsArray) => {
   const dispatch = useDispatch();
 

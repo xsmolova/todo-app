@@ -13,18 +13,13 @@ import { Filter } from "./Interfaces";
     reducers: {
       setSearchInput: (state, action: PayloadAction<Filter>) => {
         state.search = action.payload.search;
-      },
-      removeSearchInput: (state) => {
-        state = initialState;
-      },
-
+      }
     }
   });
 
  
   export const {
-    setSearchInput,
-    removeSearchInput
+    setSearchInput
   } = filterStateSlice.actions;
   
   export const getFilter = (state: RootState) => state.filter;

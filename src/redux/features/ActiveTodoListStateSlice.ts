@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 import { TodoList } from "./Interfaces";
 
 
@@ -28,4 +29,5 @@ import { TodoList } from "./Interfaces";
     removeActiveTodoList
   } = activeTodoListStateSlice.actions;
   
+  export const getActiveTodoList = (state: RootState) => state.activeTodoList;
   export default activeTodoListStateSlice.reducer;

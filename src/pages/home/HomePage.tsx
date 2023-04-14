@@ -7,7 +7,8 @@ import { Todo } from "../../redux/features/Interfaces";
 import Loader from "../../components/loader/Loader";
 import { useGetTodoListsQuery } from "../../redux/api/apiSlice";
 import { localizedText } from "../../localization/strings";
-//todoList: TodoList
+
+// Homepage that shows all todos or todos that contain searched text
 const HomePage = () => {
   const { data: todoLists, isLoading } = useGetTodoListsQuery({});
   const filter = useSelector(getFilter, shallowEqual);
@@ -46,7 +47,10 @@ const HomePage = () => {
                   localizedText.searchResult,
                   <b>{filter.search}</b>
                 )
-              : localizedText.seeAllTodos}
+              : localizedText.formatString(
+                  localizedText.seeAllTodos,
+                  <b>{undoneTodos.length}</b>
+                )}
           </div>
           <TodoCardGrid doneTodos={doneTodos} undoneTodos={undoneTodos} />
         </>

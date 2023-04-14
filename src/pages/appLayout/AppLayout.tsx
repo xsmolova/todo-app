@@ -3,6 +3,7 @@ import * as React from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 
+// Layout of the whole app
 const AppLayout = () => {
   return (
     <>

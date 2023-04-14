@@ -4,6 +4,7 @@ import CustomButton from "../../components/customButton/CustomButton";
 import { useAddNewTodoListMutation } from "../../redux/api/apiSlice";
 import { localizedText } from "../../localization/strings";
 
+// create a new todo list
 const NewTodoListPage = () => {
   const [addNewTodoList, result] = useAddNewTodoListMutation();
 

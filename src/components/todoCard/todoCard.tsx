@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import type { RootState } from "../../redux/store";
-import { useSelector } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { Todo } from "../../redux/features/Interfaces";
 import { BiEditAlt, BiTrash } from "react-icons/bi";
 import { GetFormattedDateString } from "../../utils/dateUtils";
@@ -9,6 +8,7 @@ import {
   useRemoveTodoMutation,
   useEditTodoMutation,
 } from "../../redux/api/apiSlice";
+import { getActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
 import { localizedText } from "../../localization/strings";
 import TodoModal from "../todoModal/TodoModal";
 
@@ -17,11 +17,11 @@ interface Props {
   activeTodoId?: number;
 }
 
+// Todo card that can be checked as done, edited or deleted
+
 const TodoCard = ({ todo, activeTodoId }: Props) => {
   const [editing, toggleEditing] = useState(false);
-  const activeTodoList = useSelector(
-    (state: RootState) => state.activeTodoList
-  );
+  const activeTodoList = useSelector(getActiveTodoList, shallowEqual);
   const id = activeTodoList.id !== -1 ? activeTodoList.id : activeTodoId;
   const [removeTodo, resultRemove] = useRemoveTodoMutation();
   const [editTodo, resultEdit] = useEditTodoMutation();

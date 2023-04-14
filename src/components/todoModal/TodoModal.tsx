@@ -1,13 +1,13 @@
 import * as React from "react";
 import { BiX } from "react-icons/bi";
-import type { RootState } from "../../redux/store";
-import { useSelector } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   useAddNewTodoMutation,
   useEditTodoMutation,
 } from "../../redux/api/apiSlice";
+import { getActiveTodoList } from "../../redux/features/ActiveTodoListStateSlice";
 import CustomButton from "../customButton/CustomButton";
 import { localizedText } from "../../localization/strings";
 
@@ -25,10 +25,9 @@ const DEFAULT_VALUES = {
   done: false,
 };
 
+// Modal for adding a new todo or editing existing ones
 const TodoModal = ({ edit, todoId, todoValues, closeEditingModal }: Props) => {
-  const activeTodoList = useSelector(
-    (state: RootState) => state.activeTodoList
-  );
+  const activeTodoList = useSelector(getActiveTodoList, shallowEqual);
   const id = activeTodoList.id;
   const [modalOpen, toggleModalOpen] = useState(edit ? true : false);
   const [editTodo, resultEdit] = useEditTodoMutation();

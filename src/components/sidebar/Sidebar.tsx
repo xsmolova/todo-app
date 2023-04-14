@@ -13,6 +13,11 @@ import { setSearchInput } from "../../redux/features/FilterStateSlice";
 
 import Loader from "../loader/Loader";
 
+// Sidebar component:
+//  - button to add a new todo list
+//  - search input field (search all todos)
+//  - listed todo lists - scrollable
+
 const Sidebar = () => {
   const { data, error, isLoading } = useGetTodoListsQuery({});
   const dispatch = useDispatch();

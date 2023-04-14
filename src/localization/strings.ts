@@ -20,7 +20,7 @@ export let localizedText = new LocalizedStrings({
     addDescription:"Add description",
     required:"This field is required!",
     search:"Search your to-dos",
-    seeAllTodos:"Here you can see all of your to-dos!",
+    seeAllTodos:"Here you can see all of your to-dos! Only {0} left!",
     searchResult: "Search results for {0}",
     deleteMessage: "Do you really want to delete this to-do?",
    
