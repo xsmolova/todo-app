@@ -4,7 +4,7 @@ import { Todo } from "../../redux/features/ActiveTodoListStateSlice";
 import { useSelector } from "react-redux";
 import { useGetTodosQuery } from "../../redux/api/apiSlice";
 import TodoCardGrid from "../../components/todoCardGrid/TodoCardGrid";
-import NewTodoModal from "../../components/newTodoCard/NewTodoModal";
+import TodoModal from "../../components/todoModal/TodoModal";
 import Loader from "../../components/loader/Loader";
 import { localizedText } from "../../localization/strings";
 
@@ -32,14 +32,19 @@ const TodoListPage = () => {
       ) : (
         <>
           <div className="absolute top-0 right-0">
-            <NewTodoModal />
+            <TodoModal />
           </div>
 
           <div className="mt-3">
-            {localizedText.formatString(
-              localizedText.xMoreOnTodoList,
-              <b>3</b>
-            )}
+            {undoneTodos.length === 1
+              ? localizedText.formatString(
+                  localizedText.oneMoreOnTodoList,
+                  <b>{undoneTodos.length}</b>
+                )
+              : localizedText.formatString(
+                  localizedText.xMoreOnTodoList,
+                  <b>{undoneTodos.length}</b>
+                )}
           </div>
           <TodoCardGrid doneTodos={doneTodos} undoneTodos={undoneTodos} />
         </>

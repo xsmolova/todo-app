@@ -26,6 +26,7 @@ export let localizedText = new LocalizedStrings({
       addTodoList: "Add New Todo List",
       createTodoList: "Create Todo List",
       newTodo: "New Todo",
+      editTodo: "Edit Todo"
     },
   },
 });
