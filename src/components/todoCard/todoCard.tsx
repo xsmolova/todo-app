@@ -48,7 +48,7 @@ const TodoCard = ({ todo, activeTodoId }: Props) => {
           closeEditingModal={() => toggleEditing(false)}
         />
       )}
-      <div className="grid h-20 max-h-20 flex-grow card bg-secondary hover:bg-secondary-focus rounded-box ">
+      <div className="grid lg:h-24 lg:max-h-24 h-40 max-h-40 flex-grow card bg-secondary hover:bg-secondary-focus rounded-box ">
         <div className="form-control justify-center flex items-start">
           <div className="absolute flex top-2 right-3 gap-1">
             <BiEditAlt

@@ -34,7 +34,7 @@ const NewTodoListPage = () => {
       >
         <label>{localizedText.newTodoListTitle}:</label>
         <input
-          className="input w-full mt-3 max-w-xs text-sm bg-secondary"
+          className="input w-full mt-3 max-w-full text-sm bg-secondary"
           placeholder={localizedText.title}
           {...register("title", { required: true, maxLength: 20 })}
         />

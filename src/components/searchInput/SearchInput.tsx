@@ -23,7 +23,7 @@ const SearchInput = ({ setValue }: Props) => {
         type="text"
         value={searchValue}
         placeholder={localizedText.search}
-        className="input w-full max-w-xs text-sm"
+        className="input w-full max-w-full text-sm"
         onChange={(e) => setSearchValue(e.target.value)}
         onKeyDown={handleKeyDown}
       />

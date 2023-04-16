@@ -10,7 +10,7 @@ interface Props {
 const CustomButton = ({ children, type, center, className }: Props) => (
   <button
     type={type || null}
-    className={`btn btn-block mt-6 bg-primary hover:bg-primary-focus border-none text-white normal-case w-full max-w-xs ${
+    className={`btn btn-block mt-6 bg-primary hover:bg-primary-focus border-none text-white normal-case w-full max-w-full ${
       center ? " justify-center" : " justify-start"
     }${className && ` ${className}`}
       `}

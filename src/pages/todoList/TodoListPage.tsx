@@ -54,7 +54,7 @@ const TodoListPage = (props: any) => {
         <Loader />
       ) : (
         <>
-          <div className="absolute top-0 right-0">
+          <div className="md:absolute md:top-0 md:right-0">
             <TodoModal />
           </div>
 
