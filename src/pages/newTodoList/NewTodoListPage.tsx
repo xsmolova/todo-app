@@ -22,7 +22,7 @@ const NewTodoListPage = () => {
     <div>
       <h2>{localizedText.newTodoList}</h2>
       <form
-        className="flex mt-10 flex-col"
+        className="flex mt-10 flex-col md:max-w-xs"
         onSubmit={handleSubmit((data) => {
           addNewTodoList(data)
             .unwrap()
